@@ -23,7 +23,7 @@ public class ProductController {
     @PostMapping("/add")
     public String createProduct(@RequestBody ProductDTO productDto) {
         Optional<Category> optionalCategory = categoryRepo.findById(productDto.getCategoryId());
-        if (optionalCategory.isEmpty()) {
+        if (!optionalCategory.isPresent()) {
             return "Category does not exist";
         }
         productService.createProduct(productDto, optionalCategory.get());
@@ -31,17 +31,17 @@ public class ProductController {
     }
     @GetMapping("/")
     public ResponseEntity<List<ProductDTO>> getProducts(){
-        final List<ProductDTO> products = productService.getAllProducts();
+        List<ProductDTO> products = productService.getAllProducts();
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
     @PutMapping("/update/{productId}")
     public String updateProduct(@PathVariable("productId") Long productId, @RequestBody ProductDTO productDto) throws Exception {
         Optional<Category> optionalCategory = categoryRepo.findById(productDto.getCategoryId());
-        if (optionalCategory.isEmpty()) {
+        if (!optionalCategory.isPresent()) {
             return "Category does not exist";
         }
         productService.updateProduct(productDto, productId);
-        return "Product has been added";
+        return "Product has been updated";
     }
 }

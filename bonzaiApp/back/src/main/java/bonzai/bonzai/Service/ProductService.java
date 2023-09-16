@@ -46,7 +46,7 @@ public class ProductService {
 
     public void updateProduct(ProductDTO productDto, Long productId) throws Exception {
        Optional<Product> optionalProduct = productRepo.findById(productId);
-       if (!optionalProduct.isEmpty()){
+       if (!optionalProduct.isPresent()){
            throw new Exception("Product not present");
        }
        Product product = optionalProduct.get();

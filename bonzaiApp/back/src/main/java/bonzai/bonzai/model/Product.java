@@ -15,10 +15,8 @@ import jakarta.persistence.Entity;
 public class Product {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-@ManyToOne
-@JoinColumn(name = "category_id")
-Category category;
+private Long id;
+
 @Column(nullable = false)
 
 private String Name;
@@ -26,4 +24,7 @@ private String Description;
 private double Price;
 private String ImgURL;
 
+@ManyToOne
+@JoinColumn(name = "category_id")
+Category category;
 }

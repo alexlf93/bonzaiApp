@@ -36,12 +36,12 @@ public class ProductController {
     }
 
     @PutMapping("/update/{productId}")
-    public ResponseEntity createProduct(@PathVariable("productId"), productId @RequestBody ProductDTO productDto) {
+    public String updateProduct(@PathVariable("productId") Long productId, @RequestBody ProductDTO productDto) throws Exception {
         Optional<Category> optionalCategory = categoryRepo.findById(productDto.getCategoryId());
         if (optionalCategory.isEmpty()) {
             return "Category does not exist";
         }
-        productService.createProduct(productDto, optionalCategory.get());
+        productService.updateProduct(productDto, productId);
         return "Product has been added";
     }
 }

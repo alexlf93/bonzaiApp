@@ -5,6 +5,8 @@ import bonzai.bonzai.model.Product;
 import bonzai.bonzai.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -55,5 +57,16 @@ public class ProductService {
         product.setName(productDto.getName());
         product.setPrice(productDto.getPrice());
         productRepo.save(product);
+    }
+    @DeleteMapping
+    public boolean deleteProduct(Long Id) {
+        Optional<Product> productOptional = productRepo.findById(Id);
+        if (productOptional.isPresent()) {
+            productRepo.deleteById(Id);
+            return true;
+        } else {
+            System.out.println("Product not exist with this ID: " + Id);
+            return false;
+        }
     }
 }

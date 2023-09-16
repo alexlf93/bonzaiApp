@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -43,5 +44,15 @@ public class ProductController {
         }
         productService.updateProduct(productDto, productId);
         return "Product has been updated";
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteProduct(@PathVariable Long id) {
+
+        try {
+            productService.deleteProduct(id);
+            return ResponseEntity.ok("Product successfully deleted");
+        }catch (ResponseStatusException ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+        }
     }
 }

@@ -18,19 +18,15 @@ public class Product {
 private Long id;
 
 @Column(nullable = false)
-private String Name;
+private String name;
 @Column(nullable = false)
-private String Description;
+private String description;
 @Column(nullable = false)
-private double Price;
-@Column(nullable = false)
-private String ImgURL;
+private double price;
+private String imgURL;
 
 @ManyToOne
 @JoinColumn(name = "category_id")
 Category category;
 
-@ManyToOne
-@JoinColumn
-CartItem cartItem;
 }

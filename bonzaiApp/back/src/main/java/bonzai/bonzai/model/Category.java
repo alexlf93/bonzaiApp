@@ -19,8 +19,5 @@ public class Category {
 
     @Column(nullable = false)
     private String categoryName;
-    @Column(nullable = false)
     private String description;
-    @Column(nullable = false)
-    private String ImgURL;
 }

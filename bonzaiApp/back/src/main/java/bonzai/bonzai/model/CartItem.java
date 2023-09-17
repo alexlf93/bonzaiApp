@@ -1,5 +1,4 @@
 package bonzai.bonzai.model;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,15 +11,13 @@ import lombok.Setter;
 @Setter
 @Entity
 
-public class Category {
+public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String categoryName;
-    @Column(nullable = false)
-    private String description;
-    @Column(nullable = false)
-    private String ImgURL;
+    @ManyToOne
+    private Product product;
+    private Long quantity;
+
 }

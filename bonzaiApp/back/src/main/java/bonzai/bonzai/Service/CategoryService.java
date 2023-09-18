@@ -26,7 +26,6 @@ public void createCategory(Category category){
     Category category = categoryRepo.getById(Id);
     category.setCategoryName(updateCategory.getCategoryName());
     category.setDescription(updateCategory.getDescription());
-    category.setImgURL(updateCategory.getImgURL());
     categoryRepo.save(category);
     }
     @DeleteMapping

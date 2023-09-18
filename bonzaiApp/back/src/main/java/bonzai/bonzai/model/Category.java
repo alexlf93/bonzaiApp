@@ -20,5 +20,4 @@ public class Category {
     @Column(nullable = false)
     private String categoryName;
     private String description;
-    private String ImgURL;
 }

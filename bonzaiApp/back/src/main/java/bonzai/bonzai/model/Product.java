@@ -15,15 +15,18 @@ import jakarta.persistence.Entity;
 public class Product {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+private Long id;
+
+@Column(nullable = false)
+private String name;
+@Column(nullable = false)
+private String description;
+@Column(nullable = false)
+private double price;
+private String imgURL;
+
 @ManyToOne
 @JoinColumn(name = "category_id")
 Category category;
-@Column(nullable = false)
-
-private String Name;
-private String Description;
-private double Price;
-private String ImgURL;
 
 }
